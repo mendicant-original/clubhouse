@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222192652) do
+ActiveRecord::Schema.define(:version => 20120222202456) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "uid"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(:version => 20120222192652) do
     t.string   "email"
     t.string   "nickname"
     t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -32,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120222192652) do
     t.date     "membership_date"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "group_id"
   end
 
 end
