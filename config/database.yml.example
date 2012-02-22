@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  database: clubhouse-devel
+  username: root
+  host: localhost
+  min_messages: error
+
+test:
+  adapter: postgresql
+  database: clubhouse-test
+  username: root
+  host: localhost
+  min_messages: error
+
+production:
+  adapter: postgresql
+  database: clubhouse-production
+  username: root
+  host: localhost
+  min_messages: error
