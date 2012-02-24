@@ -1,4 +1,6 @@
 class Person < ActiveRecord::Base
+  before_save :clean_website
+
   belongs_to :authorization
   belongs_to :group
 
@@ -11,6 +13,7 @@ class Person < ActiveRecord::Base
     {
       name:            name,
       email:           email,
+      email_hash:      email_hash,
       group:           group.name,
       website:         website,
       membership_date: membership_date,
@@ -18,5 +21,19 @@ class Person < ActiveRecord::Base
       github_nickname: github_nickname,
       permissions:     permissions.to_hash
     }
+  end
+
+  def email_hash
+    Digest::MD5.hexdigest(email.downcase) if email
+  end
+
+  private
+
+  def clean_website
+    # Remove http(s):// from the front of the website
+    self.website = website.gsub(/\Ahttp[s]?:\/\//i, '')
+
+    # Remove any trailing slashes
+    self.website = website.gsub(/\/\z/, '')
   end
 end
