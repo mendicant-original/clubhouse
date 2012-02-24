@@ -5,13 +5,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       format.json do
-        render :json => {
-          name:            person.name,
-          email:           person.email,
-          group:           person.group.name,
-          website:         person.website,
-          membership_date: person.membership_date
-        }
+        render :json => person.to_hash
       end
     end
   end
