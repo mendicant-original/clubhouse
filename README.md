@@ -1,6 +1,6 @@
 # Welcome to the Clubhouse!
 
-Clubhouse is a people management system for Mendicant University. It's very new
+Clubhouse is a system for managing contact information and access to resources for the people involved with Mendicant University. It's very new
 and still under heavy development.
 
 ## Contributing
