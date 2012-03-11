@@ -29,7 +29,7 @@ task :setup do
     unless File.exists?(omniauth)
       create_file(omniauth, "Omniauth config")
     else
-      "Omniauth config file already exists"
+      puts "Omniauth config file already exists"
     end
 
   end
