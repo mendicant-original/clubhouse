@@ -3,6 +3,7 @@
 Resource.create(name: "Clubhouse")
 Resource.create(name: "Community")
 Resource.create(name: "Liskov")
+Resource.create(name: "PuzzleNode")
 
 # Groups
 

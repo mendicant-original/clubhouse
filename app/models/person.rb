@@ -9,6 +9,12 @@ class Person < ActiveRecord::Base
   validates_presence_of   :name, :authorization_id, :group_id
   validates_uniqueness_of :email
 
+  after_create do
+    authorization = Authorization.find_by_nickname(github_nickname)
+
+    authorization.update_attribute(:person_id, id) if authorization
+  end
+
   def to_hash
     {
       name:            name,

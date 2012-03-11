@@ -1,5 +1,11 @@
-class Authorization < ActiveRecord::Base
+class Authorization < ActiveRecord::Bas
   has_one :person
+
+  before_create do
+    person = Person.find_by_github_nickname(nickname)
+
+    self.person_id = person.id if person
+  end
 
   def self.find_or_create_from_hash(auth_hash)
     authorization = where(uid: auth_hash['uid'])
