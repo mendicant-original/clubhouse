@@ -1,10 +1,9 @@
 class Authorization < ActiveRecord::Base
   has_one :person
 
-  before_create do
+  after_save do
     person = Person.find_by_github_nickname(nickname)
-
-    self.person_id = person.id if person
+    person.update_attribute(:authorization_id, self.id) if person
   end
 
   def self.find_or_create_from_hash(auth_hash)
