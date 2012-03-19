@@ -1,15 +1,19 @@
 require 'test_helper'
 
-class PersonTest < ActiveSupport::TestCase
-  def setup
+describe Person do
+
+  before do
+    let(:person) { Factory(:person) }
   end
 
-  test "to_hash returns a hash of the person's attributes" do
-    person = Factory(:person)
-    assert person.to_hash.kind_of?(Hash)
+  describe "to_param" do
+    it "returns the github nickname" do
+      tom = Factory(:person, :github_nickname => 'mojombo')
+      tom.to_param.must_equal 'mojombo'
+    end
   end
 
-  test "saves properly without a website" do
+  it "does not raise a NoMethodError when website is nil" do
     begin
       Factory(:person, :website => nil)
       pass

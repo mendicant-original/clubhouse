@@ -6,8 +6,12 @@ class Person < ActiveRecord::Base
 
   has_many :permissions, :dependent => :delete_all
 
-  validates_presence_of   :name, :email, :group_id
-  validates_uniqueness_of :email
+  validates_presence_of   :email, :github_nickname, :group_id, :name
+  validates_uniqueness_of :email, :github_nickname
+
+  def to_param
+    self.github_nickname
+  end
 
   def to_hash
     {
