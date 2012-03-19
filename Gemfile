@@ -23,6 +23,7 @@ gem 'jquery-rails'
 group 'test' do
   gem 'minitest',          '~> 2.11.2'
   gem 'capybara',          '~> 1.1.2'
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'colorific'
   gem 'test_notifier'
