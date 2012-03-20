@@ -35,3 +35,9 @@
   .actions
     = f.submit 'Save'
     = link_to 'Destroy', @person, :method => :delete
+
+- content_for :footer do
+  :javascript
+    jQuery(function(){
+      Clubhouse.PeopleForm.init();
+    });
