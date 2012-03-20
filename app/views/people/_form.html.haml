@@ -28,7 +28,7 @@
 
   = f.fields_for :permissions do |permission_form|
     = permission_form.hidden_field :resource_id, :value => permission_form.object.resource.id
-    .field
+    .field.permission-collection{:"data-object-name" => permission_form.object_name}
       = permission_form.label :role_id, permission_form.object.resource.name
       = permission_form.collection_select :role_id, Role.all, :id, :name, {:include_blank => "(none)"}
 

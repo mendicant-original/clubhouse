@@ -17,10 +17,6 @@ class PeopleController < ApplicationController
   end
 
   def update
-    params[:person][:permissions_attributes].each do |key,val|
-      val["_destroy"] = true if val["role_id"] == ""
-    end
-
     respond_to do |format|
       if @person.update_attributes(params[:person])
         format.html do
