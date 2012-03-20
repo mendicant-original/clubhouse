@@ -1,7 +1,6 @@
 require 'test_helper'
 
 describe Person do
-
   before do
     let(:person) { Factory(:person) }
   end

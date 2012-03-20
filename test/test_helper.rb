@@ -2,9 +2,9 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/spec'
-Dir[File.expand_path('../support/*.rb', __FILE__)].each { |file| require file }
-
 require 'capybara/rails'
+
+Dir[File.expand_path('../support/*.rb', __FILE__)].each { |file| require file }
 
 DatabaseCleaner.strategy = :truncation
 class MiniTest::Spec

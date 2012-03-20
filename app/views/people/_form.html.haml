@@ -1,0 +1,31 @@
+= form_for(@person) do |f|
+  -if @person.errors.any?
+    #error_explanation
+      = pluralize(@person.errors.count, "error") + "prohibited this information from being saved"
+      %ul
+      - @person.errors.full_messages.each do |message|
+        %li
+          = message
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  .field
+    = f.label :email
+    = f.text_field :email
+
+  .field
+    = f.label :github_nickname
+    = f.text_field :github_nickname
+
+  .field
+    = f.label :website
+    = f.text_field :website
+
+  .field
+    = f.label :time_zone
+    = f.text_field :time_zone
+
+  .actions
+    = f.submit 'Save'
+    = link_to 'Destroy', @person, :method => :delete
