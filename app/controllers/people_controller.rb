@@ -1,11 +1,12 @@
 class PeopleController < ApplicationController
+  before_filter :find_person, :except => [:index]
+  before_filter :decorate_person, :only => [:show, :edit]
+
   # The index action will correspond to the search page
   def index
   end
 
   def show
-    @person = find_person_from_params
-
     respond_to do |format|
       format.html
       format.json { render json: @person.to_hash }
@@ -13,12 +14,9 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = PersonDecorator.new(find_person_from_params)
   end
 
   def update
-    @person = find_person_from_params
-
     params[:person][:permissions_attributes].each do |key,val|
       val["_destroy"] = true if val["role_id"] == ""
     end
@@ -34,8 +32,8 @@ class PeopleController < ApplicationController
         end
       else
         format.html do
-          @person = PersonDecorator.new(@person)
           flash[:alert] = "Unable to update #{@person.github_nickname}"
+          decorate_person
           render :edit
         end
         format.json do
@@ -46,7 +44,6 @@ class PeopleController < ApplicationController
   end
 
   def destroy
-    @person = find_person_from_params
     @person.destroy
 
     respond_to do |format|
@@ -74,7 +71,11 @@ class PeopleController < ApplicationController
   #
   # Returns the Person instance associated with the given github_nickname or
   # raises a RecordNotFound exception.
-  def find_person_from_params
-    Person.find_by_github_nickname!(params[:id])
+  def find_person
+    @person = Person.find_by_github_nickname!(params[:id])
+  end
+
+  def decorate_person
+    @person = PersonDecorator.new(@person)
   end
 end
