@@ -13,8 +13,7 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = find_person_from_params
-    @person.build_permissions
+    @person = PersonDecorator.new(find_person_from_params)
   end
 
   def update
@@ -35,9 +34,9 @@ class PeopleController < ApplicationController
         end
       else
         format.html do
-          @person.build_permissions
+          @person = PersonDecorator.new(@person)
           flash[:alert] = "Unable to update #{@person.github_nickname}"
-          render :action => "edit"
+          render :edit
         end
         format.json do
           render :json => @person.errors, :status => :unprocessable_entity

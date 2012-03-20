@@ -34,13 +34,6 @@ class Person < ActiveRecord::Base
     Digest::MD5.hexdigest(email.downcase) if email
   end
 
-  def build_permissions
-    (Resource.all - permissions.all.map(&:resource)).each do |resource|
-      permissions.new(:resource => resource)
-    end
-    permissions.sort_by!{|p| p.resource.name}
-  end
-
   private
 
   def clean_website
