@@ -14,10 +14,15 @@ class PeopleController < ApplicationController
 
   def edit
     @person = find_person_from_params
+    @person.build_permissions
   end
 
   def update
     @person = find_person_from_params
+
+    params[:person][:permissions_attributes].each do |key,val|
+      val["_destroy"] = true if val["role_id"] == ""
+    end
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
@@ -30,6 +35,7 @@ class PeopleController < ApplicationController
         end
       else
         format.html do
+          @person.build_permissions
           flash[:alert] = "Unable to update #{@person.github_nickname}"
           render :action => "edit"
         end

@@ -23,4 +23,12 @@ FactoryGirl.define do
     sequence(:nickname)   { |n| "auth_name_#{n}" }
     sequence(:token)      { |n| "token#{n}" }
   end
+
+  factory(:resource) do
+    sequence(:name) { |n| "resource #{n}" }
+  end
+
+  factory(:role) do
+    sequence(:name) { |n| "role #{n}" }
+  end
 end

@@ -6,6 +6,9 @@ class Person < ActiveRecord::Base
 
   has_many :permissions, :dependent => :delete_all
 
+  accepts_nested_attributes_for :permissions, :allow_destroy => true,
+    :reject_if => proc{|attrs| attrs.any?{|key,val| val.blank?}}
+
   validates_presence_of   :email, :github_nickname, :group_id, :name
   validates_uniqueness_of :email, :github_nickname
 
@@ -29,6 +32,13 @@ class Person < ActiveRecord::Base
 
   def email_hash
     Digest::MD5.hexdigest(email.downcase) if email
+  end
+
+  def build_permissions
+    (Resource.all - permissions.all.map(&:resource)).each do |resource|
+      permissions.new(:resource => resource)
+    end
+    permissions.sort_by!{|p| p.resource.name}
   end
 
   private

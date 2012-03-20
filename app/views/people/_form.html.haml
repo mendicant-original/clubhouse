@@ -26,6 +26,12 @@
     = f.label :time_zone
     = f.text_field :time_zone
 
+  = f.fields_for :permissions do |permission_form|
+    = permission_form.hidden_field :resource_id, :value => permission_form.object.resource.id
+    .field
+      = permission_form.label :role_id, permission_form.object.resource.name
+      = permission_form.collection_select :role_id, Role.all, :id, :name, {:include_blank => "(none)"}
+
   .actions
     = f.submit 'Save'
     = link_to 'Destroy', @person, :method => :delete
