@@ -2,5 +2,5 @@
   - flash.each do |flashtype, message|
     %div{:class => "flash #{flashtype}", :id => "flash-#{flashtype}"}
       = message
-    :javascript
-      setTimeout("$('div.flash').slideUp()", 4000);
+    :coffeescript
+      setTimeout("$('div.flash').slideUp()", 4000)
