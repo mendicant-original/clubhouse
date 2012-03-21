@@ -2,7 +2,14 @@ require 'test_helper'
 
 describe "Modify person integration" do
 
-  let(:person) { Factory(:person, :github_nickname => 'mojombo') }
+  before do
+    Factory(:resource, :name => 'Awesome App')
+    Factory(:role,     :name => 'Supreme Chancellor')
+  end
+
+  let(:person)   { Factory(:person, :github_nickname => 'mojombo') }
+  let(:resource) { Resource.find_by_name "Awesome App" }
+  let(:role)     { Role.find_by_name     "Supreme Chancellor" }
 
   describe "update a person's basic attributes" do
 
@@ -39,6 +46,31 @@ describe "Modify person integration" do
 
       it "explains the error" do
         page.has_content?("Email can't be blank").must_equal true
+      end
+    end
+  end
+
+  describe "update a person's permissions" do
+
+    describe "success" do
+      before do
+        visit edit_person_path(person)
+        select role.name, :from => resource.name
+        click_button 'Save'
+      end
+
+      it "notifies of the success" do
+        flash_message_present?('notice', 'Successfully updated information for mojombo').must_equal true
+      end
+
+      it "redirects to the edit page" do
+        current_path.must_equal edit_person_path(person)
+      end
+
+      it "correctly reflects the changes in the database" do
+        p = Person.find_by_github_nickname('mojombo')
+        p.permissions.map(&:resource).must_include resource
+        p.permissions.map(&:role).must_include role
       end
     end
   end

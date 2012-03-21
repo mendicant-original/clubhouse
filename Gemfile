@@ -8,6 +8,7 @@ gem 'omniauth-github'
 
 gem 'haml'
 gem 'sass'
+gem 'coffee-filter', '~> 0.1.1'
 
 gem 'draper', :git => "git://github.com/jcasimir/draper.git"
 

@@ -1,9 +1,7 @@
 require 'test_helper'
 
 describe Person do
-  before do
-    let(:person) { Factory(:person) }
-  end
+  let(:person) { Factory(:person) }
 
   describe "to_param" do
     it "returns the github nickname" do
