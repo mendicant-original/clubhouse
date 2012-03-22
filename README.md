@@ -8,6 +8,55 @@ and still under heavy development.
 **We are currently not accepting patches for Clubhouse. Watch this repo for
 more information.**
 
+## Setting up a development environment
+
+Instructions for MacOS X:
+
+1. Install postgresql:
+
+```
+brew install postgresql
+```
+
+2. Configure the Cluster Database:
+
+```
+initdb ~/postgree_database
+```
+
+3. Create the databases:
+
+```
+createdb clubhouse-devel
+createdb clubhouse-test
+```
+
+4. Run the database:
+
+```
+postgres -D ~/postgree_database
+```
+
+5. Optional: Create a rvmrc file:
+
+```
+rvm --rvmrc --create 1.9.3@clubhouse
+```
+
+6. Get the gems
+
+```
+bundle install
+```
+
+7. Run the migrations
+
+```
+rake db:migrate
+```
+
+You are ready.
+
 ## License
 
 Clubhouse is released under the [Affero GPL version 3](http://www.gnu.org/licenses/agpl.html).
