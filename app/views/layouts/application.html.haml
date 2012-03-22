@@ -9,4 +9,8 @@
 
     = yield(:header_bottom)
 
-  %body= yield
+  %body
+    = render :partial => "shared/flash", :locals => {:flash => flash}
+    = yield
+
+    = yield(:footer)

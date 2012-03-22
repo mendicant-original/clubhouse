@@ -6,13 +6,14 @@ class Person < ActiveRecord::Base
 
   has_many :permissions, :dependent => :delete_all
 
-  validates_presence_of   :name, :authorization_id, :group_id
-  validates_uniqueness_of :email
+  accepts_nested_attributes_for :permissions, :allow_destroy => true,
+    :reject_if => proc{|attrs| attrs.any?{|key,val| val.blank?}}
 
-  after_create do
-    authorization = Authorization.find_by_nickname(github_nickname)
+  validates_presence_of   :email, :github_nickname, :group_id, :name
+  validates_uniqueness_of :email, :github_nickname
 
-    authorization.update_attribute(:person_id, id) if authorization
+  def to_param
+    self.github_nickname
   end
 
   def to_hash
@@ -36,10 +37,12 @@ class Person < ActiveRecord::Base
   private
 
   def clean_website
-    # Remove http(s):// from the front of the website
-    self.website = website.gsub(/\Ahttp[s]?:\/\//i, '')
+    if attribute_present?(:website)
+      # Remove http(s):// from the front of the website
+      self.website = website.gsub(/\Ahttp[s]?:\/\//i, '')
 
-    # Remove any trailing slashes
-    self.website = website.gsub(/\/\z/, '')
+      # Remove any trailing slashes
+      self.website = website.gsub(/\/\z/, '')
+    end
   end
 end
