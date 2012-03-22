@@ -1,4 +1,4 @@
-module TestSupport
+module Support
   module Integration
     def flash_message_present?(flashtype, message)
       within "#flash-#{flashtype}" do
