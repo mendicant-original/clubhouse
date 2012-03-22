@@ -8,6 +8,7 @@ gem 'omniauth-github'
 
 gem 'haml'
 gem 'sass'
+gem 'coffee-filter', '~> 0.1.1'
 
 gem 'draper', :git => "git://github.com/jcasimir/draper.git"
 
@@ -23,6 +24,7 @@ gem 'jquery-rails'
 group 'test' do
   gem 'minitest',          '~> 2.11.2'
   gem 'capybara',          '~> 1.1.2'
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'colorific'
   gem 'test_notifier'

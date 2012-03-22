@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/jcasimir/draper.git
-  revision: ef368a3a88f951661e9d7cb322c8ada88778e98b
+  revision: 00b09dfbddf7775eaebabab4468d303f51b5fad0
   specs:
-    draper (0.9.5)
+    draper (0.11.1)
       activesupport (>= 2.3.10)
 
 GEM
@@ -48,6 +48,9 @@ GEM
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
+    coffee-filter (0.1.1)
+      coffee-script (>= 2.2.0)
+      haml (>= 3.0.18)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -58,18 +61,19 @@ GEM
     colorific (0.0.2)
       minitest (~> 2.0)
       ruby-progressbar (>= 0.0.9)
-    compass (0.12.rc.1)
+    compass (0.12.1)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    compass-rails (1.0.0.rc.3)
-      compass (~> 0.12.rc.0)
+    compass-rails (1.0.1)
+      compass (~> 0.12.0)
+    database_cleaner (0.7.2)
     erubis (2.7.0)
     exception_notification (2.5.2)
       actionmailer (>= 3.0.4)
     execjs (1.3.0)
       multi_json (~> 1.0)
-    factory_girl (2.6.0)
+    factory_girl (2.6.4)
       activesupport (>= 2.3.9)
     factory_girl_rails (1.7.0)
       factory_girl (~> 2.6.0)
@@ -84,27 +88,26 @@ GEM
     hashie (1.2.0)
     hike (1.2.1)
     i18n (0.6.0)
-    journey (1.0.2)
-    jquery-rails (2.0.0)
-      railties (>= 3.2.0.beta, < 5.0)
+    journey (1.0.3)
+    jquery-rails (2.0.1)
+      railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
-    json_pure (1.6.5)
     libv8 (3.3.10.4)
-    mail (2.4.1)
+    mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.17.2)
-    minitest (2.11.2)
+    mime-types (1.18)
+    minitest (2.11.4)
     multi_json (1.1.0)
     multipart-post (1.1.5)
-    nokogiri (1.5.0)
+    nokogiri (1.5.2)
     notifier (0.1.4)
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
-    omniauth (1.0.2)
+    omniauth (1.0.3)
       hashie (~> 1.2)
       rack
     omniauth-github (1.0.1)
@@ -113,10 +116,10 @@ GEM
     omniauth-oauth2 (1.0.0)
       oauth2 (~> 0.5.0)
       omniauth (~> 1.0)
-    pg (0.13.1)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
-    rack-cache (1.1)
+    rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.2)
       rack
@@ -144,14 +147,14 @@ GEM
     ruby-progressbar (0.0.10)
     rubyzip (0.9.6.1)
     sass (3.1.15)
-    sass-rails (3.2.4)
+    sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.13.0)
-      childprocess (>= 0.2.1)
-      ffi (~> 1.0.9)
-      json_pure
+    selenium-webdriver (2.20.0)
+      childprocess (>= 0.2.5)
+      ffi (~> 1.0)
+      multi_json (~> 1.0)
       rubyzip
     sprockets (2.1.2)
       hike (~> 1.2)
@@ -166,7 +169,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.31)
+    tzinfo (0.3.32)
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
@@ -178,9 +181,11 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (~> 1.1.2)
+  coffee-filter (~> 0.1.1)
   coffee-rails (~> 3.2.1)
   colorific
   compass-rails
+  database_cleaner
   draper!
   exception_notification
   factory_girl_rails
