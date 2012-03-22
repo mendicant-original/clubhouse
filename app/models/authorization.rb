@@ -1,4 +1,4 @@
-class Authorization < ActiveRecord::Bas
+class Authorization < ActiveRecord::Base
   has_one :person
 
   before_create do
