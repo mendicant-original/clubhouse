@@ -17,40 +17,21 @@ class PeopleController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @person.update_attributes(params[:person])
-        format.html do
-          redirect_to edit_person_path(@person), :notice =>
-            "Successfully updated information for #{@person.github_nickname}"
-        end
-        format.json do
-          head :no_content
-        end
-      else
-        format.html do
-          flash[:alert] = "Unable to update #{@person.github_nickname}"
-          decorate_person
-          render :edit
-        end
-        format.json do
-          render :json => @person.errors, :status => :unprocessable_entity
-        end
-      end
+    if @person.update_attributes(params[:person])
+      redirect_to edit_person_path(@person), :notice =>
+        "Successfully updated information for #{@person.github_nickname}"
+    else
+      flash[:alert] = "Unable to update #{@person.github_nickname}"
+      decorate_person
+      render :edit
     end
   end
 
   def destroy
     @person.destroy
 
-    respond_to do |format|
-      format.html do
-        redirect_to people_url, :notice =>
-          "#{@person.github_nickname} has been permenantly deleted"
-      end
-      format.json do
-        head :no_content
-      end
-    end
+    redirect_to people_url, :notice =>
+      "#{@person.github_nickname} has been permenantly deleted"
   end
 
   # People are created in two ways:
