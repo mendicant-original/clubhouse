@@ -24,13 +24,6 @@ Configure the Cluster Database:
 initdb ~/postgree_database
 ```
 
-Create the databases:
-
-```
-createdb clubhouse-devel
-createdb clubhouse-test
-```
-
 Run the database:
 
 ```
@@ -49,7 +42,7 @@ Get the gems
 bundle install
 ```
 
-7. Run the setup task
+Run the setup task
 
 ```
 rake setup
