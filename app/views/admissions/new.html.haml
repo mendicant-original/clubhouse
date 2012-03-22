@@ -1,0 +1,13 @@
+%h1 Admissions
+
+= form_tag @admission do
+  = label_tag(:description)  
+  = text_area_tag :description
+  = label_tag(:open)
+  = check_box_tag(:open)
+  = label_tag(:closed_on)
+  = select_date(Date.today, :prefix => :closed_on)
+  = label_tag(:limit)
+  = text_field_tag(:limit)
+
+  = submit_tag
