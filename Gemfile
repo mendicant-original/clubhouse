@@ -28,6 +28,8 @@ group 'test' do
   gem 'factory_girl_rails'
   gem 'colorific'
   gem 'test_notifier'
+  gem 'capybara_minitest_spec'
+  gem 'launchy'
 end
 
 group :development do

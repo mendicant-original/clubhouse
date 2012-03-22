@@ -1,13 +1,28 @@
 %h1 Admissions
 
-= form_tag @admission do
-  = label_tag(:description)  
-  = text_area_tag :description
-  = label_tag(:open)
-  = check_box_tag(:open)
-  = label_tag(:closed_on)
-  = select_date(Date.today, :prefix => :closed_on)
-  = label_tag(:limit)
-  = text_field_tag(:limit)
+= form_for(@admission) do |f|
 
-  = submit_tag
+  -if @admission.errors.any?
+    #error_explanation
+      = pluralize(@admission.errors.count, "error") + " prohibited this information from being saved"
+      %ul
+        - @admission.errors.full_messages.each do |message|
+          %li
+            = message
+
+  = f.label :title
+  = f.text_field :title
+
+  = f.label :description
+  = f.text_area :description
+
+  = f.label :open
+  = f.check_box :open
+
+  = f.label :closed_on
+  = date_select :admission, :closed_on
+
+  = f.label :limit
+  = f.text_field :limit
+
+  = f.submit
