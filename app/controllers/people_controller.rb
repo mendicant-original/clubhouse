@@ -21,7 +21,6 @@ class PeopleController < ApplicationController
       redirect_to edit_person_path(@person), :notice =>
         "Successfully updated information for #{@person.github_nickname}"
     else
-      flash[:alert] = "Unable to update #{@person.github_nickname}"
       decorate_person
       render :edit
     end
@@ -47,9 +46,11 @@ class PeopleController < ApplicationController
   # Finds the Person by their github_nickname
   #
   # Returns the Person instance associated with the given github_nickname or
-  # raises a RecordNotFound exception.
+  # returns a 404 Not Found error.
   def find_person
-    @person = Person.find_by_github_nickname!(params[:id])
+    @person = Person.find_by_github_nickname(params[:id])
+
+    raise ActionController::RoutingError.new('Not Found') unless @person
   end
 
   def decorate_person

@@ -1,11 +1,6 @@
 = form_for(@person) do |f|
-  -if @person.errors.any?
-    #error_explanation
-      = pluralize(@person.errors.count, "error") + "prohibited this information from being saved"
-      %ul
-      - @person.errors.full_messages.each do |message|
-        %li
-          = message
+  = error_messages_for @person
+
   .field
     = f.label :name
     = f.text_field :name
