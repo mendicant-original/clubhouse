@@ -24,5 +24,10 @@
 
   = f.label :limit
   = f.text_field :limit
+  
+  = f.fields_for :admission_questions do |f|
+    = render 'admission_question_fields', :f => f
+  .links
+    = link_to_add_association 'Add Question', f, :admission_questions
 
   = f.submit

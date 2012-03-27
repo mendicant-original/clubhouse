@@ -12,6 +12,8 @@ gem 'coffee-filter', '~> 0.1.1'
 
 gem 'draper', :git => "git://github.com/jcasimir/draper.git"
 
+gem "cocoon"
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

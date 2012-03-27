@@ -6,7 +6,7 @@ describe "Admissions integration" do
   end
 
   describe "Create admission" do
-    let(:admission) { Factory.build(:admission) }
+    let(:admission) { FactoryGirl.build(:admission) }
     
     before { visit root_path }
 
