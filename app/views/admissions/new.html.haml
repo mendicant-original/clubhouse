@@ -29,5 +29,10 @@
     = render 'admission_question_fields', :f => f
   .links
     = link_to_add_association 'Add Question', f, :admission_questions
+    
+  = f.fields_for :admission_attachments do |f|
+    = render 'admission_attachment_fields', :f => f
+  .links
+    = link_to_add_association 'Add Attachment', f, :admission_attachments
 
   = f.submit

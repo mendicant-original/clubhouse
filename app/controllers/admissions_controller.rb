@@ -6,6 +6,7 @@ class AdmissionsController < ApplicationController
 
   def create
     @admission = Admission.new params[:admission]
+    
     if @admission.save
       redirect_to root_path, :notice => 'Admission page created'
     else

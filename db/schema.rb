@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327202746) do
+ActiveRecord::Schema.define(:version => 20120327221018) do
+
+  create_table "admission_attachments", :force => true do |t|
+    t.text     "description"
+    t.integer  "admission_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "admission_questions", :force => true do |t|
     t.text     "description"
@@ -66,6 +73,14 @@ ActiveRecord::Schema.define(:version => 20120327202746) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "question_responses", :force => true do |t|
+    t.text     "answer"
+    t.integer  "admission_question_id"
+    t.integer  "submission_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
   create_table "resources", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -76,6 +91,13 @@ ActiveRecord::Schema.define(:version => 20120327202746) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "submissions", :force => true do |t|
+    t.integer  "admission_id"
+    t.integer  "person_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

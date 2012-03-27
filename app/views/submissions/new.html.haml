@@ -1,0 +1,13 @@
+%h1 
+  = @admission.title
+
+#description
+  = @admission.description
+  
+#submission
+
+  = form_for [@admission, @submission] do |f|
+    - @submission.question_responses.each do |a_response|
+      = f.fields_for :question_responses do |f|
+        = render 'submission_question_fields', :f => f, :a_response => a_response
+    = f.submit
