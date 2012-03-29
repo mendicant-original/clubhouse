@@ -10,41 +10,10 @@ more information.**
 
 ## Setting up a development environment
 
-Instructions for MacOS X:
-
-Install postgresql:
-
-```
-brew install postgresql
-```
-
-Configure the Cluster Database:
-
-```
-initdb ~/postgree_database
-```
-
-Run the database:
-
-```
-postgres -D ~/postgree_database
-```
-
-Optional: Create a rvmrc file:
-
-```
-rvm --rvmrc --create 1.9.3@clubhouse
-```
-
-Get the gems
+Setting up a development envinronment is easy. Just make sure you have Ruby, Postgree and bundle installed.
 
 ```
 bundle install
-```
-
-Run the setup task
-
-```
 rake setup
 ```
 
